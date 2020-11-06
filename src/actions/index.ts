@@ -1,10 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
-import { ThunkAction} from 'redux-thunk';
+import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
 import { ADD_BOOK, EDIT_BOOK, GET_ALL_BOOKS, REMOVE_BOOK } from '../constants';
 import { IAddBookAction, IBook, IEditBookAction, IGetAllAction, IRemoveBookAction } from '../types';
+import {RootState, RootAction} from '../store'
 
 const url = `https://spring-boot-mysql-server-part0.herokuapp.com/api/books`;
+
+export type ThunkResult<R> = ThunkAction<R, RootState, undefined, RootAction>;
 
 export type IBookAction = 
 | IAddBookAction
@@ -12,19 +15,24 @@ export type IBookAction =
 | IGetAllAction
 | IRemoveBookAction
 
-export const getAllBooksSuccess = (books: IBook[]): IGetAllAction => {
+export const getAllBooksSuccess = (books: IBook[]): IBookAction => {
+    console.log('get all books success')
     return {
         type: GET_ALL_BOOKS,
         payload: books
     }
 };
 
-export const getAllBooks = () => {
-    return (dispatch: Dispatch<IGetAllAction>) => {
-        return axios.get(url)
-            .then((response) => {
-                dispatch(getAllBooksSuccess(response.data))
-            })
+export const getAllBooks = (): ThunkResult<void> => async dispatch => {
+    console.log('123')
+    return (dispatch: Dispatch<IBookAction>) => {
+        console.log('456')
+        return dispatch(getAllBooksSuccess([]))
+        // return axios.get(url)
+        //     .then((response) => {
+        //         console.log(response.data)
+        //         dispatch(getAllBooksSuccess(response.data))
+        //     })
     }
 };
 export const createBookSuccess = (data: IBook): IAddBookAction => {
@@ -48,14 +56,14 @@ export const createBook = (book: IBook) => {
             })
     }
 };
-export const updateBookSuccess = (id: number, data: IBook): IEditBookAction => {
+export const updateBookSuccess = (id: number, data: IBook) => {
     return (dispatch: Dispatch<IEditBookAction>) => {
         dispatch({ type: EDIT_BOOK, payload: data, id: id });
     }
 };
 export const updateBook = (id: number, data: IBook) => {
     console.log(data.published);
-    return (dispatch: Dispatch<IEditBookAction>) => {
+    return (dispatch: any) => {
         return axios.put(`${url}/${id}`, {
             title: data.title,
             author: data.author,
@@ -63,17 +71,17 @@ export const updateBook = (id: number, data: IBook) => {
             published: data.published
         })
             .then(res => {
-                dispatch(updateBookSuccess(id, data));
+                dispatch(updateBookSuccess(res.data.id, res.data));
             });
     }
 };
-export const deleteBookSuccess = (id: number): IRemoveBookAction => {
-    return (dispatch: Dispatch<IRemoveBookAction>) => {
+export const deleteBookSuccess = (id: number) => {
+    return (dispatch: any) => {
         dispatch({ type: REMOVE_BOOK, payload: {id} });
     }
 };
-export const deleteBook = (id) => {
-    return (dispatch) => {
+export const deleteBook = (id:number) => {
+    return (dispatch: any) => {
         return axios.delete(`${url}/${id}`)
             .then(res => {
                 dispatch(deleteBookSuccess(id));

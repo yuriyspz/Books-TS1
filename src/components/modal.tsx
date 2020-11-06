@@ -7,33 +7,33 @@ import {Field, reduxForm} from "redux-form";
 
 class Modal extends React.Component {
 
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     title: this.props.book.title,
-        //     author: this.props.book.author,
-        //     description: this.props.book.description,
-        //     published: this.props.book.published,
-        //     id: this.props.book.id
-        // };
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // this.state = {
+    //     //     title: this.props.book.title,
+    //     //     author: this.props.book.author,
+    //     //     description: this.props.book.description,
+    //     //     published: this.props.book.published,
+    //     //     id: this.props.book.id
+    //     // };
+    // }
 
-    handleDelete = e=>{
-        this.props.onDeleteBook(this.props.book.id);
-        this.props.onHideModal();
-    };
+    // handleDelete = e=>{
+    //     this.props.onDeleteBook(this.props.book.id);
+    //     this.props.onHideModal();
+    // };
 
-    submit = (values) => {
-        this.props.onUpdateBook(this.props.book.id, values);
-        this.props.onHideModal();
-    };
+    // submit = (values) => {
+    //     this.props.onUpdateBook(this.props.book.id, values);
+    //     this.props.onHideModal();
+    // };
 
     render() {
-        const {handleSubmit} = this.props;
+        // const {handleSubmit} = this.props;
 
         return (
             <div>
-                <div className={this.props.show ? "modal display-block" : "modal display-none"}>
+                {/* <div className={this.props.show ? "modal display-block" : "modal display-none"}>
                     <FormWrapper className="modal-main">
                         <FormHeading>Редактируем: {this.props.book.title}</FormHeading>
                         <Form>
@@ -70,7 +70,7 @@ class Modal extends React.Component {
                         <ButtonDelete onClick={this.handleDelete}>Delete</ButtonDelete>
                         <ButtonClose onClick={this.props.onHideModal}>Close</ButtonClose>
                     </FormWrapper>
-                </div>
+                </div> */}
             </div>
         );
     }
@@ -122,21 +122,22 @@ const ButtonClose = styled.button`
     font-size: 18px;
     cursor: pointer;
 `;
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onUpdateBook: (id, book) => {
-            dispatch(updateBook(id, book));
-        },
-        onDeleteBook: (id)=>{
-            dispatch(deleteBook(id));
-        }
-    }
-};
-export default reduxForm({
-    form: "modifyBookForm"
-})(
-    connect(
-        null,
-        mapDispatchToProps
-    )(Modal)
-);
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         onUpdateBook: (id, book) => {
+//             dispatch(updateBook(id, book));
+//         },
+//         onDeleteBook: (id)=>{
+//             dispatch(deleteBook(id));
+//         }
+//     }
+// };
+// export default reduxForm({
+//     form: "modifyBookForm"
+// })(
+//     connect(
+//         null,
+//         mapDispatchToProps
+//     )(Modal)
+// );
+export default Modal;

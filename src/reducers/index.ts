@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 import {reducer as reduxFormReducer} from 'redux-form';
-import book from './book';
+import book from '../reducers/book'
 
 export default combineReducers({
     book,

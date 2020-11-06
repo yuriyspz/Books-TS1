@@ -3,7 +3,7 @@ import Modal from "./modal";
 
 class SingleBook extends React.Component {
 
-    constructor(props) {
+    constructor(props:any) {
         super(props);
         this.state = {show: false};
     }
@@ -19,14 +19,14 @@ class SingleBook extends React.Component {
     render() {
         return (
             <div>
-                <div onClick={this.showModal} className={'book-element'}>
+                {/* <div onClick={this.showModal} className={'book-element'}>
                     <div>-----------------------------------</div>
                     <div>Название: {this.props.book.title}</div>
                     <div>Автор: {this.props.book.author}</div>
                     <div>Описание: {this.props.book.description}</div>
                     <div>Дата публикации: {this.props.book.published}</div>
                 </div>
-                <Modal show={this.state.show} book={this.props.book} onHideModal={() => this.setState({show: false})}/>
+                <Modal show={this.state.show} book={this.props.book} onHideModal={() => this.setState({show: false})}/> */}
             </div>
 
         );

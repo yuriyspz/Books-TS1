@@ -1,15 +1,19 @@
 import { ADD_BOOK, EDIT_BOOK, GET_ALL_BOOKS, REMOVE_BOOK } from "./constants";
 
 export interface IBook {
-    id?: number,
-    title?: string,
-    author?: string,
-    description?: string,
-    published? : number
+    id: number,
+    title: string,
+    author: string,
+    description: string,
+    published: number
 }
 
 export interface IBooks {
     [id: number]: IBook
+}
+
+export interface IbooksState {
+    books: IBooks
 }
 
 export interface IAddBookAction {

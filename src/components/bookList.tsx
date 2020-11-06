@@ -1,17 +1,21 @@
-import React from 'react'
-import {getAllBooks} from "../actions";
+import React, { Dispatch } from 'react'
+import {createBook, getAllBooks, IBookAction} from "../actions";
 import {connect} from "react-redux";
 import styled from 'styled-components';
 import SingleBook from "./singleBook";
+import { IBook, IbooksState, IGetAllAction } from '../types';
+import { RootState } from '../store';
 
-class BookList extends React.Component {
+export interface BooksListProps {
+    books: IbooksState;
+    getAllBooks: ()=> any;
+}
 
-    constructor(props) {
-        super(props);
-    }
+class BookList extends React.Component<BooksListProps> {
 
     componentDidMount() {
-        this.props.getBooks();
+        console.log('did moint')
+        this.props.getAllBooks();
     }
 
     render() {
@@ -19,14 +23,15 @@ class BookList extends React.Component {
             <Container>
                 <ul className="list">
                     {
-                        this.props.books.map((item, index) =>
-                            <SingleBook
-                                key={index}
-                                book={item}
-                            >
-                                {item.title}
-                            </SingleBook>
-                        )
+                         Object.entries(this.props.books).map(([index, item]) => console.log(item))
+                         
+                        //     // <SingleBook
+                        //     //     key={index}
+                        //     //     book={item}
+                        //     // >
+                        //         <> {item.title}</>
+                        //     // </SingleBook>
+                        // )
                     }
                 </ul>
             </Container>
@@ -46,15 +51,15 @@ const ListElement = styled.li`
 	font-weight: 500;
 	color: palevioletred;
 `;
-const mapStateToProps = (state) => {
+const mapStateToProps = (state:RootState) => {
     return {
-        books: state.book
+        books: state.books
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch:Dispatch<any>) => {
     return {
-        getBooks: () => {
+        getAllBooks: () => {
             dispatch(getAllBooks());
         }
     }

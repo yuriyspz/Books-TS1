@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const fieldComponent = ({input, placeholder, label, type, meta: {touched, error, warning}}) => (
-    <InputWrap>
-        <Label>{label}</Label>
-            <Input {...input} placeholder={placeholder} type={type}/>
-            {touched && ((error && <ErrorField>{error}</ErrorField>) || (warning &&
-                <WarningField>{warning}</WarningField>))}
-    </InputWrap>
-);
+// // const fieldComponent = ({input, placeholder, label, type, meta: {touched, error, warning}}) => (
+//     <InputWrap>
+//         <Label>{label}</Label>
+//             <Input {...input} placeholder={placeholder} type={type}/>
+//             {touched && ((error && <ErrorField>{error}</ErrorField>) || (warning &&
+//                 <WarningField>{warning}</WarningField>))}
+//     </InputWrap>
+// );
 const InputWrap = styled.div`
     width: 100%;
     margin-bottom: 20px;
