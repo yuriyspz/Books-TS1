@@ -11,7 +11,7 @@ export interface RootState {
     readonly books: IbooksState
 }
 
-const RootReducer = combineReducers<RootState>({
+const RootReducer = combineReducers<any>({
     books: bookReducer
 })
 export type RootAction = IBookAction

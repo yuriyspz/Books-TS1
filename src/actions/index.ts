@@ -23,16 +23,16 @@ export const getAllBooksSuccess = (books: IBook[]): IBookAction => {
     }
 };
 
-export const getAllBooks = (): ThunkResult<void> => async dispatch => {
+export const getAllBooks = (): ThunkResult<void> => {
     console.log('123')
-    return (dispatch: Dispatch<IBookAction>) => {
+    return (dispatch: any) => {
         console.log('456')
-        return dispatch(getAllBooksSuccess([]))
-        // return axios.get(url)
-        //     .then((response) => {
-        //         console.log(response.data)
-        //         dispatch(getAllBooksSuccess(response.data))
-        //     })
+        //return dispatch(getAllBooksSuccess([]))
+        return axios.get(url)
+            .then((response) => {
+                console.log(response.data)
+                dispatch(getAllBooksSuccess(response.data))
+            })
     }
 };
 export const createBookSuccess = (data: IBook): IAddBookAction => {

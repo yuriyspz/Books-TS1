@@ -1,11 +1,13 @@
 import { Reducer } from "react";
 import { IBookAction } from "../actions";
 import { ADD_BOOK, EDIT_BOOK, GET_ALL_BOOKS, REMOVE_BOOK } from "../constants";
+import { RootState } from "../store";
+import { IbooksState } from "../types";
 // import { IbooksState } from "../types";
 const initialState = {books: {}}
 
 
-const bookReducer: Reducer<any, IBookAction> = (
+const bookReducer: Reducer<IbooksState, IBookAction> = (
     state = initialState, 
     action
     ) => {
