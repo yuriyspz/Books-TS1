@@ -1,20 +1,21 @@
 import React from "react";
+import { JsxElement } from "typescript";
 import { IBook } from "../types";
 import Modal from "./modal";
 
-interface SingleBookProps {
+interface ISingleBook {
   book: IBook;
 }
 
-class SingleBook extends React.Component<SingleBookProps, SingleBookProps> {
-  constructor(props: SingleBookProps) {
+class SingleBook extends React.Component<ISingleBook, ISingleBook> {
+  constructor(props: ISingleBook) {
     super(props);
     this.state = {
       book: this.props.book,
     };
   }
 
-  render() {
+  render():JSX.Element | null {
     return (
       <div>
           {this.props.book.description}
