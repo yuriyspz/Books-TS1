@@ -1,25 +1,24 @@
-import React from 'react'
+import React from "react";
+import { IBook } from "../types";
 import Modal from "./modal";
 
-class SingleBook extends React.Component {
+interface SingleBookProps {
+  book: IBook;
+}
 
-    constructor(props:any) {
-        super(props);
-        this.state = {show: false};
-    }
-
-    showModal = () => {
-        this.setState({show: true});
+class SingleBook extends React.Component<SingleBookProps, SingleBookProps> {
+  constructor(props: SingleBookProps) {
+    super(props);
+    this.state = {
+      book: this.props.book,
     };
+  }
 
-    hideModal = () => {
-        this.setState({show: false});
-    };
-
-    render() {
-        return (
-            <div>
-                {/* <div onClick={this.showModal} className={'book-element'}>
+  render() {
+    return (
+      <div>
+          {this.props.book.description}
+        {/* <div onClick={this.showModal} className={'book-element'}>
                     <div>-----------------------------------</div>
                     <div>Название: {this.props.book.title}</div>
                     <div>Автор: {this.props.book.author}</div>
@@ -27,11 +26,9 @@ class SingleBook extends React.Component {
                     <div>Дата публикации: {this.props.book.published}</div>
                 </div>
                 <Modal show={this.state.show} book={this.props.book} onHideModal={() => this.setState({show: false})}/> */}
-            </div>
-
-        );
-    }
-
+      </div>
+    );
+  }
 }
 
 export default SingleBook;

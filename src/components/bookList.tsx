@@ -28,7 +28,8 @@ class BookList extends React.Component<BooksListProps> {
           {console.log(a.books)}
           {console.log(this.props.books)}
           {Object.keys(a.books).map((key) => console.log(a.books[key]))} */}
-          {/* {Object.keys(a).map((key) => console.log(a[key]))} */}
+          {Object.keys(a).map((key) => console.log(a[key]))}
+          {Object.keys(a).map((key) => <SingleBook book={a[key]}/>)}
           {console.log(Object.keys(a))}
 {/* {a.books.map((i:any)=>console.log(a.books[i]))} */}
         </ul>
